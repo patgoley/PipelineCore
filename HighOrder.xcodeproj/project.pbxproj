@@ -17,6 +17,8 @@
 		8E3158281D28510300292851 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3158271D28510300292851 /* Result.swift */; };
 		8E31582A1D28538300292851 /* MockFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3158291D28538300292851 /* MockFunctions.swift */; };
 		8E31582C1D28558C00292851 /* FunctionOperatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E31582B1D28558C00292851 /* FunctionOperatorTests.swift */; };
+		8E31582E1D28638D00292851 /* AsyncFunctionOperatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E31582D1D28638D00292851 /* AsyncFunctionOperatorTests.swift */; };
+		8E3158301D28663400292851 /* MockAsyncFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E31582F1D28663400292851 /* MockAsyncFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,8 @@
 		8E3158271D28510300292851 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		8E3158291D28538300292851 /* MockFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFunctions.swift; sourceTree = "<group>"; };
 		8E31582B1D28558C00292851 /* FunctionOperatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionOperatorTests.swift; sourceTree = "<group>"; };
+		8E31582D1D28638D00292851 /* AsyncFunctionOperatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncFunctionOperatorTests.swift; sourceTree = "<group>"; };
+		8E31582F1D28663400292851 /* MockAsyncFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAsyncFunctions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +105,9 @@
 			children = (
 				8E3158141D284DB700292851 /* HighOrderTests.swift */,
 				8E3158291D28538300292851 /* MockFunctions.swift */,
+				8E31582F1D28663400292851 /* MockAsyncFunctions.swift */,
 				8E31582B1D28558C00292851 /* FunctionOperatorTests.swift */,
+				8E31582D1D28638D00292851 /* AsyncFunctionOperatorTests.swift */,
 				8E3158161D284DB700292851 /* Info.plist */,
 			);
 			path = HighOrderTests;
@@ -227,9 +233,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E31582E1D28638D00292851 /* AsyncFunctionOperatorTests.swift in Sources */,
 				8E3158151D284DB700292851 /* HighOrderTests.swift in Sources */,
 				8E31582A1D28538300292851 /* MockFunctions.swift in Sources */,
 				8E31582C1D28558C00292851 /* FunctionOperatorTests.swift in Sources */,
+				8E3158301D28663400292851 /* MockAsyncFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

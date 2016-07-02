@@ -11,7 +11,31 @@ import Foundation
 
 // MARK: Producers
 
-// async producer, sync consumer
+// producer, async consumer
+
+public func |> <T>(lhs: () -> T, rhs: (T, () -> Void) -> Void) -> (() -> Void) -> Void  {
+    
+    return { (completion: () -> Void) in
+        
+        let value = lhs()
+        
+        rhs(value, completion)
+    }
+}
+
+// producer, async transformer
+
+public func |> <T, U>(lhs: () -> T, rhs: (T, (U) -> Void) -> Void) -> ((U) -> Void) -> Void  {
+    
+    return { (completion: (U) -> Void) in
+        
+        let value = lhs()
+        
+        rhs(value, completion)
+    }
+}
+
+// async producer, consumer
 
 public func |> <T>(lhs: ((T) -> Void) -> Void, rhs: T -> Void) -> (() -> Void) -> Void  {
     
@@ -39,18 +63,33 @@ public func |> <T>(lhs: ((T) -> Void) -> Void, rhs: (T, () -> Void) -> Void) -> 
     }
 }
 
-// async producer, sync transformer
+// async producer, transformer
 
-public func |> <T, U>(lhs: ((T) -> Void) -> Void, rhs: T -> U) -> ((U) -> Void) -> Void  {
+//public func |> <T, U>(lhs: ((T) -> Void) -> Void, rhs: T -> U) -> ((U) -> Void) -> Void  {
+//    
+//    return { (completion: (U) -> Void) in
+//        
+//        lhs() { (value: T) in
+//            
+//            let newValue = rhs(value)
+//            
+//            completion(newValue)
+//        }
+//    }
+//}
+
+
+
+func toString<T>(value: T) -> String {
     
-    return { (completion: (U) -> Void) in
+    return "\(value)"
+}
+
+func asyncThunkify<T>(value: T) -> (T -> Void) -> Void {
+    
+    return { completion in
         
-        lhs() { (value: T) in
-            
-            let newValue = rhs(value)
-            
-            completion(newValue)
-        }
+        return completion(value)
     }
 }
 
