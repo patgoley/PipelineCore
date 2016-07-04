@@ -22,9 +22,8 @@ public enum Result<T> {
 }
 
 /*
- Converts a throwing synchronous function into one that returns
- a `Result<U>` instead. Wrapping throwing functions with errorMap
- will allow them to be used with the `|>` operator.
+ Converts a throwing synchronous function into one that returns a `Result<U>` instead. 
+ Wrapping throwing functions with errorMap will allow them to be used with the `|>` operator.
 */
 
 public func errorMap<T, U>(function: (T) throws -> U) -> (T) -> Result<U> {
@@ -45,8 +44,8 @@ public func errorMap<T, U>(function: (T) throws -> U) -> (T) -> Result<U> {
 }
 
 /*
- Converts a throwing synchronous function into one that passes
- a `Result<U>` to the completion closure instead. 
+ Converts a throwing asynchronous function into one that passes a `Result<U>` to the 
+ completion closure instead.
  */
 
 public func errorMap<T, U>(function: (T, (U) -> Void) throws -> Void) -> (T, (Result<U>) -> Void) -> Void {

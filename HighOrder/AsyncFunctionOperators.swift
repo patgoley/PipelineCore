@@ -15,7 +15,7 @@ import Foundation
 
 // MARK: Producers
 
-// producer, async consumer
+// sync producer, async consumer
 
 public func |> <T>(lhs: () -> T, rhs: (T, () -> Void) -> Void) -> (() -> Void) -> Void  {
     
@@ -39,7 +39,7 @@ public func |> <T, U>(lhs: () -> T, rhs: (T, (U) -> Void) -> Void) -> ((U) -> Vo
     }
 }
 
-// async producer, consumer
+// async producer, sync consumer
 
 public func |> <T>(lhs: ((T) -> Void) -> Void, rhs: T -> Void) -> (() -> Void) -> Void  {
     
@@ -67,7 +67,7 @@ public func |> <T>(lhs: ((T) -> Void) -> Void, rhs: (T, () -> Void) -> Void) -> 
     }
 }
 
-// async producer, transformer
+// async producer, sync transformer
 
 public func |> <T, U>(lhs: ((T) -> Void) -> Void, rhs: T -> U) -> ((U) -> Void) -> Void  {
     
