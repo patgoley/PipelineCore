@@ -10,5 +10,3 @@ import Foundation
 
 
 infix operator |> { precedence 95 associativity left }
-
-infix operator !> { precedence 95 associativity left }

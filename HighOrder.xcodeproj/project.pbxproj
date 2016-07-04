@@ -13,10 +13,11 @@
 		8E3158221D284DD000292851 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E31581F1D284DD000292851 /* Operators.swift */; };
 		8E3158231D284DD000292851 /* FunctionOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3158201D284DD000292851 /* FunctionOperators.swift */; };
 		8E3158241D284DD000292851 /* AsyncFunctionOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3158211D284DD000292851 /* AsyncFunctionOperators.swift */; };
-		8E3158261D284E4400292851 /* ThrowingFunctionOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3158251D284E4400292851 /* ThrowingFunctionOperators.swift */; };
 		8E3158281D28510300292851 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3158271D28510300292851 /* Result.swift */; };
-		8E31582A1D28538300292851 /* MockFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3158291D28538300292851 /* MockFunctions.swift */; };
 		8E31582C1D28558C00292851 /* FunctionOperatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E31582B1D28558C00292851 /* FunctionOperatorTests.swift */; };
+		8E31582E1D28638D00292851 /* AsyncFunctionOperatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E31582D1D28638D00292851 /* AsyncFunctionOperatorTests.swift */; };
+		8E3F0F901D29DF3F00D2F4B4 /* MockAsyncFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E31582F1D28663400292851 /* MockAsyncFunctions.swift */; };
+		8E3F0F911D29DF4200D2F4B4 /* MockFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3158291D28538300292851 /* MockFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,10 +40,11 @@
 		8E31581F1D284DD000292851 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		8E3158201D284DD000292851 /* FunctionOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionOperators.swift; sourceTree = "<group>"; };
 		8E3158211D284DD000292851 /* AsyncFunctionOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncFunctionOperators.swift; sourceTree = "<group>"; };
-		8E3158251D284E4400292851 /* ThrowingFunctionOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThrowingFunctionOperators.swift; sourceTree = "<group>"; };
 		8E3158271D28510300292851 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		8E3158291D28538300292851 /* MockFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFunctions.swift; sourceTree = "<group>"; };
+		8E3158291D28538300292851 /* MockFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockFunctions.swift; path = HighOrderTests/MockFunctions.swift; sourceTree = SOURCE_ROOT; };
 		8E31582B1D28558C00292851 /* FunctionOperatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionOperatorTests.swift; sourceTree = "<group>"; };
+		8E31582D1D28638D00292851 /* AsyncFunctionOperatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncFunctionOperatorTests.swift; sourceTree = "<group>"; };
+		8E31582F1D28663400292851 /* MockAsyncFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockAsyncFunctions.swift; path = HighOrderTests/MockAsyncFunctions.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +92,6 @@
 				8E3158201D284DD000292851 /* FunctionOperators.swift */,
 				8E3158211D284DD000292851 /* AsyncFunctionOperators.swift */,
 				8E3158271D28510300292851 /* Result.swift */,
-				8E3158251D284E4400292851 /* ThrowingFunctionOperators.swift */,
 				8E31580A1D284DB700292851 /* Info.plist */,
 			);
 			path = HighOrder;
@@ -100,8 +101,10 @@
 			isa = PBXGroup;
 			children = (
 				8E3158141D284DB700292851 /* HighOrderTests.swift */,
-				8E3158291D28538300292851 /* MockFunctions.swift */,
 				8E31582B1D28558C00292851 /* FunctionOperatorTests.swift */,
+				8E3158291D28538300292851 /* MockFunctions.swift */,
+				8E31582F1D28663400292851 /* MockAsyncFunctions.swift */,
+				8E31582D1D28638D00292851 /* AsyncFunctionOperatorTests.swift */,
 				8E3158161D284DB700292851 /* Info.plist */,
 			);
 			path = HighOrderTests;
@@ -219,7 +222,6 @@
 				8E3158281D28510300292851 /* Result.swift in Sources */,
 				8E3158241D284DD000292851 /* AsyncFunctionOperators.swift in Sources */,
 				8E3158231D284DD000292851 /* FunctionOperators.swift in Sources */,
-				8E3158261D284E4400292851 /* ThrowingFunctionOperators.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,8 +229,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E3F0F901D29DF3F00D2F4B4 /* MockAsyncFunctions.swift in Sources */,
+				8E3F0F911D29DF4200D2F4B4 /* MockFunctions.swift in Sources */,
+				8E31582E1D28638D00292851 /* AsyncFunctionOperatorTests.swift in Sources */,
 				8E3158151D284DB700292851 /* HighOrderTests.swift in Sources */,
-				8E31582A1D28538300292851 /* MockFunctions.swift in Sources */,
 				8E31582C1D28558C00292851 /* FunctionOperatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,6 +413,7 @@
 				8E31581B1D284DB700292851 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8E31581C1D284DB700292851 /* Build configuration list for PBXNativeTarget "HighOrderTests" */ = {
 			isa = XCConfigurationList;
@@ -417,6 +422,7 @@
 				8E31581E1D284DB700292851 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
