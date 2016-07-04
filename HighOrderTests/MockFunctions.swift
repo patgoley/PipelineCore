@@ -32,7 +32,12 @@ func addFive(value: Int) -> Int {
     return value + 5
 }
 
-func toString<T>(value: T) -> String {
+func toString<T: CustomStringConvertible>(value: T) -> String {
     
-    return "\(value)"
+    return value.description
+}
+
+func printString(value: String) {
+    
+    print(value)
 }

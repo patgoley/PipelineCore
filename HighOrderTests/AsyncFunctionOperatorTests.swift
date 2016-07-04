@@ -101,7 +101,7 @@ class AsyncFunctionOperatorTests: XCTestCase {
         
         let expt = expectationWithDescription("consumer")
         
-        let fiveToString: ((String) -> Void) -> Void = asyncThunkify(5) |> asyncToString
+        let fiveToString = asyncThunkify(5) |> asyncToString
         
         fiveToString() { (str: String) -> Void in
             
@@ -150,7 +150,7 @@ class AsyncFunctionOperatorTests: XCTestCase {
         
         let expt = expectationWithDescription("consumer")
         
-        let expectFiveMoreString: (Int, (String) -> Void) -> Void = asyncAddFive |> toString
+        let expectFiveMoreString = asyncAddFive |> toString
         
         expectFiveMoreString(0) { (str: String) in
             

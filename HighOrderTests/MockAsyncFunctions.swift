@@ -34,7 +34,7 @@ func asyncAddFive(value: Int, _ completion: (Int) -> Void) {
     completion(value + 5)
 }
 
-func asyncToString<T>(value: T, completion: (String) -> Void) {
+func asyncToString<T: CustomStringConvertible>(value: T, completion: (String) -> Void) {
     
-     completion("\(value)")
+     completion(value.description)
 }
