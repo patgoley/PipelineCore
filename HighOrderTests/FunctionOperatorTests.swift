@@ -19,7 +19,7 @@ class FunctionOperatorTests: XCTestCase {
         
         let expt = expectationWithDescription("consumer")
         
-        let expectFive = thunkify(5) |> consumer(expt, 5)
+        let expectFive = thunkify(5) |> expect(expt, 5)
         
         expectFive()
         
@@ -44,7 +44,7 @@ class FunctionOperatorTests: XCTestCase {
         
         let expt = expectationWithDescription("consumer")
         
-        let expectFiveMore = addFive |> consumer(expt, 5)
+        let expectFiveMore = addFive |> expect(expt, 5)
         
         expectFiveMore(0)
         
@@ -57,7 +57,7 @@ class FunctionOperatorTests: XCTestCase {
         
         let expt = expectationWithDescription("consumer")
         
-        let expectFiveMoreString = addFive |> toString |> consumer(expt, "5")
+        let expectFiveMoreString = addFive |> toString |> expect(expt, "5")
         
         expectFiveMoreString(0)
         
@@ -76,9 +76,9 @@ class FunctionOperatorTests: XCTestCase {
         let secondExpt = expectationWithDescription("second consumer")
         
         let consumeThenProduce = addFive
-            |> consumer(firstExpt, 5)
+            |> expect(firstExpt, 5)
             |> thunkify("abc")
-            |> consumer(secondExpt, "abc")
+            |> expect(secondExpt, "abc")
         
         consumeThenProduce(0)
         
