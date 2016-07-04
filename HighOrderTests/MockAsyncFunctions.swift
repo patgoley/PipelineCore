@@ -21,7 +21,7 @@ func asyncConsumer<T: Equatable>(expectation: XCTestExpectation, _ expectedValue
     }
 }
 
-func asyncThunkify<T>(value: T) -> (T -> Void) -> Void {
+func asyncThunkify<T>(value: T) -> ((T) -> Void) -> Void {
     
     return { completion in
         
@@ -29,7 +29,7 @@ func asyncThunkify<T>(value: T) -> (T -> Void) -> Void {
     }
 }
 
-func asyncAddFive(value: Int, completion: (Int) -> Int) {
+func asyncAddFive(value: Int, _ completion: (Int) -> Void) {
     
     completion(value + 5)
 }

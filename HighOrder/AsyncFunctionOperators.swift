@@ -65,31 +65,16 @@ public func |> <T>(lhs: ((T) -> Void) -> Void, rhs: (T, () -> Void) -> Void) -> 
 
 // async producer, transformer
 
-//public func |> <T, U>(lhs: ((T) -> Void) -> Void, rhs: T -> U) -> ((U) -> Void) -> Void  {
-//    
-//    return { (completion: (U) -> Void) in
-//        
-//        lhs() { (value: T) in
-//            
-//            let newValue = rhs(value)
-//            
-//            completion(newValue)
-//        }
-//    }
-//}
-
-
-
-func toString<T>(value: T) -> String {
+public func |> <T, U>(lhs: ((T) -> Void) -> Void, rhs: T -> U) -> ((U) -> Void) -> Void  {
     
-    return "\(value)"
-}
-
-func asyncThunkify<T>(value: T) -> (T -> Void) -> Void {
-    
-    return { completion in
+    return { (completion: (U) -> Void) in
         
-        return completion(value)
+        lhs() { (value: T) in
+            
+            let newValue = rhs(value)
+            
+            completion(newValue)
+        }
     }
 }
 
@@ -165,5 +150,69 @@ public func |> <T, U, V>(lhs: (T, (U) -> Void) -> Void, rhs: (U, V -> Void) -> V
     }
 }
 
+// sync transformer, async consumer
+
+public func |> <T, U>(lhs: (T) -> U, rhs: (U, () -> Void) -> Void) -> (T, () -> Void) -> Void  {
+    
+    return { (value: T, completion: () -> Void) in
+        
+        let newValue = lhs(value)
+        
+        rhs(newValue, completion)
+    }
+}
+
+// sync transformer, async transformer
+
+public func |> <T, U, V>(lhs: (T) -> U, rhs: (U, V -> Void) -> Void) -> (T, (V) -> Void) -> Void  {
+    
+    return { (value: T, completion: (V) -> Void) in
+        
+        let newValue = lhs(value)
+        
+        rhs(newValue, completion)
+    }
+}
+
 
 // MARK: Consumers
+
+// async consumer, sync producer
+
+public func |> <U, V>(lhs: (U, () -> Void) -> Void, rhs: () -> V) -> (U, (V) -> Void) -> Void  {
+    
+    return { (value: U, completion: (V) -> Void) in
+        
+        lhs(value) {
+            
+            let newValue = rhs()
+            
+            completion(newValue)
+        }
+    }
+}
+
+// async consumer, async producer
+
+public func |> <T, U>(lhs: (T, () -> Void) -> Void, rhs: (U -> Void) -> Void) -> (T, (U) -> Void) -> Void  {
+    
+    return { (value: T, completion: (U) -> Void) in
+        
+        lhs(value) {
+            
+            rhs(completion)
+        }
+    }
+}
+
+// sync consumer, async producer
+
+public func |> <T, U>(lhs: (T) -> Void, rhs: (U -> Void) -> Void) -> (T, (U) -> Void) -> Void  {
+    
+    return { (value: T, completion: (U) -> Void) in
+        
+        lhs(value)
+        
+        rhs(completion)
+    }
+}

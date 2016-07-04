@@ -32,7 +32,7 @@ public func !> <T>(lhs: () throws -> T, rhs: T -> ()) -> () -> ErrorType?  {
     }
 }
 
-// producer, thowing consumer
+// producer, throwing consumer
 
 public func !> <T>(lhs: () -> T, rhs: T throws -> ()) -> () -> ErrorType?  {
     
@@ -53,7 +53,7 @@ public func !> <T>(lhs: () -> T, rhs: T throws -> ()) -> () -> ErrorType?  {
     }
 }
 
-// throwing producer, thowing consumer
+// throwing producer, throwing consumer
 
 public func !> <T>(lhs: () throws -> T, rhs: T throws -> ()) -> () -> ErrorType?  {
     
