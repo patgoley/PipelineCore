@@ -13,7 +13,6 @@
 		8E3158221D284DD000292851 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E31581F1D284DD000292851 /* Operators.swift */; };
 		8E3158231D284DD000292851 /* FunctionOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3158201D284DD000292851 /* FunctionOperators.swift */; };
 		8E3158241D284DD000292851 /* AsyncFunctionOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3158211D284DD000292851 /* AsyncFunctionOperators.swift */; };
-		8E3158261D284E4400292851 /* ThrowingFunctionOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3158251D284E4400292851 /* ThrowingFunctionOperators.swift */; };
 		8E3158281D28510300292851 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E3158271D28510300292851 /* Result.swift */; };
 		8E31582C1D28558C00292851 /* FunctionOperatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E31582B1D28558C00292851 /* FunctionOperatorTests.swift */; };
 		8E31582E1D28638D00292851 /* AsyncFunctionOperatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E31582D1D28638D00292851 /* AsyncFunctionOperatorTests.swift */; };
@@ -41,7 +40,6 @@
 		8E31581F1D284DD000292851 /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operators.swift; sourceTree = "<group>"; };
 		8E3158201D284DD000292851 /* FunctionOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionOperators.swift; sourceTree = "<group>"; };
 		8E3158211D284DD000292851 /* AsyncFunctionOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncFunctionOperators.swift; sourceTree = "<group>"; };
-		8E3158251D284E4400292851 /* ThrowingFunctionOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThrowingFunctionOperators.swift; sourceTree = "<group>"; };
 		8E3158271D28510300292851 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		8E3158291D28538300292851 /* MockFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MockFunctions.swift; path = HighOrderTests/MockFunctions.swift; sourceTree = SOURCE_ROOT; };
 		8E31582B1D28558C00292851 /* FunctionOperatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionOperatorTests.swift; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 				8E3158201D284DD000292851 /* FunctionOperators.swift */,
 				8E3158211D284DD000292851 /* AsyncFunctionOperators.swift */,
 				8E3158271D28510300292851 /* Result.swift */,
-				8E3158251D284E4400292851 /* ThrowingFunctionOperators.swift */,
 				8E31580A1D284DB700292851 /* Info.plist */,
 			);
 			path = HighOrder;
@@ -225,7 +222,6 @@
 				8E3158281D28510300292851 /* Result.swift in Sources */,
 				8E3158241D284DD000292851 /* AsyncFunctionOperators.swift in Sources */,
 				8E3158231D284DD000292851 /* FunctionOperators.swift in Sources */,
-				8E3158261D284E4400292851 /* ThrowingFunctionOperators.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

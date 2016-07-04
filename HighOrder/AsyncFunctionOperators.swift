@@ -8,6 +8,10 @@
 
 import Foundation
 
+/*
+ The following overloads allow the chaining of any synchronous
+ or asynchronous functions. 
+*/
 
 // MARK: Producers
 
