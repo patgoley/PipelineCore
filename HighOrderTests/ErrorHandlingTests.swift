@@ -10,8 +10,30 @@ import XCTest
 import HighOrder
 
 class ErrorHandlingTests: XCTestCase {
+    
+    func testSyncErrorMapThrowingProducer() {
+        
+        let expt = expectationWithDescription("error")
+        
+        let fiveError = errorMap(throwingThunkify(5)) |> expectError(expt)
+        
+        fiveError()
+        
+        waitForExpectationsWithTimeout(0.1, handler: nil)
+    }
+    
+    func testSyncErrorMapProducer() {
+        
+        let expt = expectationWithDescription("error")
+        
+        let fiveSuccess = errorMap(safeThunkify(5)) |> expectSuccess(expt, 5)
+        
+        fiveSuccess()
+        
+        waitForExpectationsWithTimeout(0.1, handler: nil)
+    }
 
-    func testSyncErrorMapThrow() {
+    func testSyncErrorMapThrowingTransformer() {
         
         let expt = expectationWithDescription("error")
         

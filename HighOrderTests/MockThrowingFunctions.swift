@@ -34,6 +34,22 @@ func expectError<T: Equatable>(expectation: XCTestExpectation) -> Result<T> -> V
     }
 }
 
+func throwingThunkify<T>(value: T) -> () throws -> T {
+    
+    return {
+        
+        throw MockError()
+    }
+}
+
+func safeThunkify<T>(value: T) -> () throws -> T {
+    
+    return {
+        
+        return value
+    }
+}
+
 func throwingToString<T: CustomStringConvertible>(value: T) throws -> String {
     
     throw MockError()
