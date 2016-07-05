@@ -43,7 +43,7 @@ class AsyncFunctionOperatorTests: XCTestCase {
         waitForExpectationsWithTimeout(0.1, handler: nil)
     }
     
-    // async producer, consumer
+    // async producer, sync consumer
     
     func testAsyncProducerConsumer() {
         
@@ -81,7 +81,7 @@ class AsyncFunctionOperatorTests: XCTestCase {
         
         let expt = expectationWithDescription("consumer")
         
-        let fiveToString: ((String) -> Void) -> Void = asyncThunkify(5) |> toString
+        let fiveToString = asyncThunkify(5) |> toString
         
         fiveToString() { (str: String) -> Void in
             
@@ -118,9 +118,9 @@ class AsyncFunctionOperatorTests: XCTestCase {
 
     // MARK: Transformers
     
-    // async transformer, consumer
+    // async transformer, sync consumer
     
-    func testAsyncTransformerConsumer() {
+    func testAsyncTransformerSyncConsumer() {
         
         let expt = expectationWithDescription("consumer")
         
@@ -150,7 +150,7 @@ class AsyncFunctionOperatorTests: XCTestCase {
         waitForExpectationsWithTimeout(0.1, handler: nil)
     }
     
-    // async transformer, transformer
+    // async transformer, sync transformer
     
     func testAsyncTransformerTransformer() {
         
@@ -186,9 +186,25 @@ class AsyncFunctionOperatorTests: XCTestCase {
         waitForExpectationsWithTimeout(0.1, handler: nil)
     }
     
-    // transformer, async transformer
+    // sync transformer, async consumer
     
-    func testTransformerAsyncTransformer() {
+    func testSyncTransformerAsyncConsumer() {
+        
+        let expt = expectationWithDescription("consumer")
+        
+        let expectFiveMoreString = addFive |> asyncExpect(expt, 5)
+        
+        expectFiveMoreString(0) {
+            
+            
+        }
+        
+        waitForExpectationsWithTimeout(0.1, handler: nil)
+    }
+    
+    // sync transformer, async transformer
+    
+    func testSyncTransformerAsyncTransformer() {
         
         let expt = expectationWithDescription("consumer")
         
