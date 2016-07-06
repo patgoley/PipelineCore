@@ -47,6 +47,7 @@
 		8E66F80F1D2C896E003239B2 /* MockAsyncFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAsyncFunctions.swift; sourceTree = "<group>"; };
 		8E66F8101D2C896E003239B2 /* MockFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFunctions.swift; sourceTree = "<group>"; };
 		8E66F8111D2C896E003239B2 /* MockThrowingFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockThrowingFunctions.swift; sourceTree = "<group>"; };
+		8EF736B71D2CA85A00A81333 /* travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = travis.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +72,7 @@
 		8E66F7DE1D2C8917003239B2 = {
 			isa = PBXGroup;
 			children = (
+				8EF736B71D2CA85A00A81333 /* travis.yml */,
 				8E66F7EA1D2C8917003239B2 /* PipelineCore */,
 				8E66F7F61D2C8917003239B2 /* PipelineCoreTests */,
 				8E66F7E91D2C8917003239B2 /* Products */,
