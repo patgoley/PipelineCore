@@ -1,13 +1,13 @@
 //
 //  MockThrowingFunctions.swift
-//  HighOrder
+//  PipelineCore
 //
 //  Created by Patrick Goley on 7/4/16.
 //  Copyright © 2016 patrickgoley. All rights reserved.
 //
 
 import Foundation
-import HighOrder
+import PipelineCore
 import XCTest
 
 struct MockError: ErrorType { }

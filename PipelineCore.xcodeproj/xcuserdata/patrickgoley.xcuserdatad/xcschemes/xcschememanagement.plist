@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>HighOrder.xcscheme_^#shared#^_</key>
+		<key>PipelineCore.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,12 +12,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>8E3158041D284DB700292851</key>
+		<key>8E66F7E71D2C8917003239B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8E31580E1D284DB700292851</key>
+		<key>8E66F7F11D2C8917003239B2</key>
 		<dict>
 			<key>primary</key>
 			<true/>
