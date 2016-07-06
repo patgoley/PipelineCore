@@ -1,13 +1,13 @@
 //
 //  ErrorHandlingTests.swift
-//  HighOrder
+//  PipelineCore
 //
 //  Created by Patrick Goley on 7/4/16.
 //  Copyright © 2016 patrickgoley. All rights reserved.
 //
 
 import XCTest
-import HighOrder
+import PipelineCore
 
 class ErrorHandlingTests: XCTestCase {
     

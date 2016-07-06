@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8E3158041D284DB700292851"
-               BuildableName = "HighOrder.framework"
-               BlueprintName = "HighOrder"
-               ReferencedContainer = "container:HighOrder.xcodeproj">
+               BlueprintIdentifier = "8E66F7E71D2C8917003239B2"
+               BuildableName = "PipelineCore.framework"
+               BlueprintName = "PipelineCore"
+               ReferencedContainer = "container:PipelineCore.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,20 +33,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "8E31580E1D284DB700292851"
-               BuildableName = "HighOrderTests.xctest"
-               BlueprintName = "HighOrderTests"
-               ReferencedContainer = "container:HighOrder.xcodeproj">
+               BlueprintIdentifier = "8E66F7F11D2C8917003239B2"
+               BuildableName = "PipelineCoreTests.xctest"
+               BlueprintName = "PipelineCoreTests"
+               ReferencedContainer = "container:PipelineCore.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8E3158041D284DB700292851"
-            BuildableName = "HighOrder.framework"
-            BlueprintName = "HighOrder"
-            ReferencedContainer = "container:HighOrder.xcodeproj">
+            BlueprintIdentifier = "8E66F7E71D2C8917003239B2"
+            BuildableName = "PipelineCore.framework"
+            BlueprintName = "PipelineCore"
+            ReferencedContainer = "container:PipelineCore.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,10 +65,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8E3158041D284DB700292851"
-            BuildableName = "HighOrder.framework"
-            BlueprintName = "HighOrder"
-            ReferencedContainer = "container:HighOrder.xcodeproj">
+            BlueprintIdentifier = "8E66F7E71D2C8917003239B2"
+            BuildableName = "PipelineCore.framework"
+            BlueprintName = "PipelineCore"
+            ReferencedContainer = "container:PipelineCore.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -83,10 +83,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "8E3158041D284DB700292851"
-            BuildableName = "HighOrder.framework"
-            BlueprintName = "HighOrder"
-            ReferencedContainer = "container:HighOrder.xcodeproj">
+            BlueprintIdentifier = "8E66F7E71D2C8917003239B2"
+            BuildableName = "PipelineCore.framework"
+            BlueprintName = "PipelineCore"
+            ReferencedContainer = "container:PipelineCore.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
