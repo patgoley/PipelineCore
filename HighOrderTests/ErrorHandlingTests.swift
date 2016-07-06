@@ -11,7 +11,9 @@ import HighOrder
 
 class ErrorHandlingTests: XCTestCase {
     
-    func testSyncErrorMapThrowingProducer() {
+    // MARK:- Producers
+    
+    func testErrorMapSyncThrowingProducer() {
         
         let expt = expectationWithDescription("error")
         
@@ -22,7 +24,7 @@ class ErrorHandlingTests: XCTestCase {
         waitForExpectationsWithTimeout(0.1, handler: nil)
     }
     
-    func testSyncErrorMapProducer() {
+    func testSyncErrorMapSyncProducer() {
         
         let expt = expectationWithDescription("error")
         
@@ -32,8 +34,40 @@ class ErrorHandlingTests: XCTestCase {
         
         waitForExpectationsWithTimeout(0.1, handler: nil)
     }
+    
+    func testErrorMapThrowingAsyncProducer() {
+        
+        let expt = expectationWithDescription("error")
+        
+        let errorFunc = errorMap(throwingAsyncThunkify(5))
+        
+        let fiveError = errorFunc |> expectError(expt)
+        
+        fiveError() {
+            
+            
+        }
+        
+        waitForExpectationsWithTimeout(0.1, handler: nil)
+    }
+    
+    func testErrorMapAsyncProducer() {
+        
+        let expt = expectationWithDescription("error")
+        
+        let fiveSuccess = errorMap(safeAsyncThunkify(5)) |> expectSuccess(expt, 5)
+        
+        fiveSuccess() {
+            
+            
+        }
+        
+        waitForExpectationsWithTimeout(0.1, handler: nil)
+    }
+    
+    // MARK:- Transformers
 
-    func testSyncErrorMapThrowingTransformer() {
+    func testErrorMapThrowingSyncTransformer() {
         
         let expt = expectationWithDescription("error")
         
@@ -44,7 +78,7 @@ class ErrorHandlingTests: XCTestCase {
         waitForExpectationsWithTimeout(0.1, handler: nil)
     }
     
-    func testSyncErrorMapNoThrow() {
+    func testrrorMapSyncTransformer() {
         
         let expt = expectationWithDescription("error")
         
@@ -55,7 +89,7 @@ class ErrorHandlingTests: XCTestCase {
         waitForExpectationsWithTimeout(0.1, handler: nil)
     }
     
-    func testAsyncErrorMapThrow() {
+    func testErrorMapThrowingAsyncTransformer() {
         
         let expt = expectationWithDescription("error")
         
@@ -69,7 +103,7 @@ class ErrorHandlingTests: XCTestCase {
         waitForExpectationsWithTimeout(0.1, handler: nil)
     }
     
-    func testAsyncErrorMapNoThrow() {
+    func testErrorMapAsyncTransformer() {
         
         let expt = expectationWithDescription("error")
         
@@ -78,6 +112,70 @@ class ErrorHandlingTests: XCTestCase {
         fiveToString() {
             
             
+        }
+        
+        waitForExpectationsWithTimeout(0.1, handler: nil)
+    }
+    
+    // MARK:- Consumers
+    
+    func testErrorMapThrowingSyncConsumer() {
+        
+        let expt = expectationWithDescription("error")
+        
+        let fiveError = thunkify(5) |> errorMap(throwingConsumer(expt))
+        
+        let result = fiveError()
+        
+        XCTAssert(result.dynamicType == Optional<ErrorType>.self)
+        
+        XCTAssertNotNil(result)
+        
+        waitForExpectationsWithTimeout(0.1, handler: nil)
+    }
+    
+    func testErrorMapSyncConsumer() {
+        
+        let expt = expectationWithDescription("error")
+        
+        let fiveSuccess = thunkify(5) |> errorMap(safeConsumer(expt, 5))
+        
+        let result = fiveSuccess()
+        
+        XCTAssert(result.dynamicType == Optional<ErrorType>.self)
+        
+        XCTAssertNil(result)
+        
+        waitForExpectationsWithTimeout(0.1, handler: nil)
+    }
+    
+    func testErrorMapThrowingAsyncConsumer() {
+        
+        let expt = expectationWithDescription("error")
+        
+        let fiveError = thunkify(5) |> errorMap(throwingAsyncConsumer(expt))
+        
+        fiveError() { result in
+            
+            XCTAssert(result.dynamicType == Optional<ErrorType>.self)
+            
+            XCTAssertNotNil(result)
+        }
+        
+        waitForExpectationsWithTimeout(0.1, handler: nil)
+    }
+    
+    func testErrorMapAsyncConsumer() {
+        
+        let expt = expectationWithDescription("error")
+        
+        let fiveError = thunkify(5) |> errorMap(safeAsyncConsumer(expt, 5))
+        
+        fiveError() { result in
+            
+            XCTAssert(result.dynamicType == Optional<ErrorType>.self)
+            
+            XCTAssertNil(result)
         }
         
         waitForExpectationsWithTimeout(0.1, handler: nil)

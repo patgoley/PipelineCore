@@ -26,6 +26,8 @@ public enum Result<T> {
  Wrapping throwing functions with errorMap will allow them to be used with the `|>` operator.
 */
 
+// sync producer or transformer
+
 public func errorMap<T, U>(function: (T) throws -> U) -> (T) -> Result<U> {
     
     return { (value: T) -> Result<U> in
@@ -43,10 +45,51 @@ public func errorMap<T, U>(function: (T) throws -> U) -> (T) -> Result<U> {
     }
 }
 
+// sync consumer
+
+public func errorMap<T>(function: (T) throws -> Void) -> (T) -> ErrorType? {
+    
+    return { (value: T) -> ErrorType? in
+        
+        do {
+            
+            try function(value)
+            
+            return nil
+            
+        } catch let error {
+            
+            return error
+        }
+    }
+}
+
 /*
  Converts a throwing asynchronous function into one that passes a `Result<U>` to the 
  completion closure instead.
  */
+
+// async producer
+
+public func errorMap<U>(function: ((U) -> Void) throws -> Void) -> ((Result<U>) -> Void) -> Void {
+    
+    return { (completion: (Result<U>) -> Void) -> Void in
+        
+        do {
+            
+            try function() { (value: U) in
+                
+                completion(.Success(value))
+            }
+            
+        } catch let error {
+            
+            completion(.Error(error))
+        }
+    }
+}
+
+// async transformer
 
 public func errorMap<T, U>(function: (T, (U) -> Void) throws -> Void) -> (T, (Result<U>) -> Void) -> Void {
     
@@ -62,6 +105,26 @@ public func errorMap<T, U>(function: (T, (U) -> Void) throws -> Void) -> (T, (Re
         } catch let error {
             
             completion(.Error(error))
+        }
+    }
+}
+
+// async consumer
+
+public func errorMap<U>(function: (U, () -> Void) throws -> Void) -> (U, (ErrorType?) -> Void) -> Void {
+    
+    return { (value: U, completion: (ErrorType?) -> Void) -> Void in
+        
+        do {
+            
+            try function(value) {
+                
+                completion(nil)
+            }
+            
+        } catch let error {
+            
+            completion(error)
         }
     }
 }

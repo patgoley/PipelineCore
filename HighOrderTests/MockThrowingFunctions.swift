@@ -34,6 +34,48 @@ func expectError<T: Equatable>(expectation: XCTestExpectation) -> Result<T> -> V
     }
 }
 
+func throwingConsumer<T: Equatable>(expectation: XCTestExpectation) -> T throws -> Void {
+    
+    return { value in
+        
+        expectation.fulfill()
+        
+        throw MockError()
+    }
+}
+
+func safeConsumer<T: Equatable>(expectation: XCTestExpectation, _ expectedValue: T) -> T throws -> Void {
+    
+    return { value in
+        
+        XCTAssert(value == expectedValue)
+        
+        expectation.fulfill()
+    }
+}
+
+func throwingAsyncConsumer<T: Equatable>(expectation: XCTestExpectation) -> (T, () -> Void) throws -> Void {
+    
+    return { value, compeltion in
+        
+        expectation.fulfill()
+        
+        throw MockError()
+    }
+}
+
+func safeAsyncConsumer<T: Equatable>(expectation: XCTestExpectation, _ expectedValue: T) -> (T, () -> Void) throws -> Void {
+    
+    return { value, completion in
+        
+        XCTAssert(value == expectedValue)
+        
+        expectation.fulfill()
+        
+        completion()
+    }
+}
+
 func throwingThunkify<T>(value: T) -> () throws -> T {
     
     return {
@@ -47,6 +89,22 @@ func safeThunkify<T>(value: T) -> () throws -> T {
     return {
         
         return value
+    }
+}
+
+func throwingAsyncThunkify<T>(value: T) -> ((T -> Void)) throws -> Void {
+    
+    return { completion in
+        
+        throw MockError()
+    }
+}
+
+func safeAsyncThunkify<T>(value: T) -> ((T) -> Void) throws -> Void {
+    
+    return { completion in
+        
+         completion(value)
     }
 }
 
