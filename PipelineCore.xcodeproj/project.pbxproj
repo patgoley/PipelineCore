@@ -19,7 +19,6 @@
 		8E66F8151D2C896E003239B2 /* MockAsyncFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E66F80F1D2C896E003239B2 /* MockAsyncFunctions.swift */; };
 		8E66F8161D2C896E003239B2 /* MockFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E66F8101D2C896E003239B2 /* MockFunctions.swift */; };
 		8E66F8171D2C896E003239B2 /* MockThrowingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E66F8111D2C896E003239B2 /* MockThrowingFunctions.swift */; };
-		8EF736BA1D2CA91A00A81333 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 8EF736B91D2CA91A00A81333 /* .travis.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,7 +206,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EF736BA1D2CA91A00A81333 /* .travis.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
