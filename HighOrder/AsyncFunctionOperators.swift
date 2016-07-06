@@ -9,25 +9,22 @@
 import Foundation
 
 /*
- The following overloads allow the chaining of any synchronous
- or asynchronous functions. 
+ The following overloads allow the chaining of any synchronous or asynchronous functions. 
+ An asynchronous function has one of the following signatures:
+ 
+ producer: ((T) -> Void) -> Void
+ 
+ transformer: (T, (U) -> Void) -> Void
+ 
+ consumer: (T, () -> Void) -> Void
+ 
+ Note that chaining a consumer is the same as chaining a transformer where U == Void, so
+ these use cases are covered by the operators for chaining transformers.
 */
 
 // MARK: Producers
 
-// producer, async consumer
-
-public func |> <T>(lhs: () -> T, rhs: (T, () -> Void) -> Void) -> (() -> Void) -> Void  {
-    
-    return { (completion: () -> Void) in
-        
-        let value = lhs()
-        
-        rhs(value, completion)
-    }
-}
-
-// producer, async transformer
+// sync producer, async transformer
 
 public func |> <T, U>(lhs: () -> T, rhs: (T, (U) -> Void) -> Void) -> ((U) -> Void) -> Void  {
     
@@ -39,35 +36,7 @@ public func |> <T, U>(lhs: () -> T, rhs: (T, (U) -> Void) -> Void) -> ((U) -> Vo
     }
 }
 
-// async producer, consumer
-
-public func |> <T>(lhs: ((T) -> Void) -> Void, rhs: T -> Void) -> (() -> Void) -> Void  {
-    
-    return { (completion: () -> Void) in
-        
-        lhs() { (value: T) in
-            
-            rhs(value)
-            
-            completion()
-        }
-    }
-}
-
-// async producer, async consumer
-
-public func |> <T>(lhs: ((T) -> Void) -> Void, rhs: (T, () -> Void) -> Void) -> (() -> Void) -> Void  {
-    
-    return { (completion: () -> Void) in
-        
-        lhs() { (value: T) in
-            
-            rhs(value, completion)
-        }
-    }
-}
-
-// async producer, transformer
+// async producer, sync transformer
 
 public func |> <T, U>(lhs: ((T) -> Void) -> Void, rhs: T -> U) -> ((U) -> Void) -> Void  {
     
@@ -98,34 +67,6 @@ public func |> <T, U>(lhs: ((T) -> Void) -> Void, rhs: (T, (U) -> Void) -> Void)
 
 // MARK: Transformers
 
-// async transformer, sync consumer
-
-public func |> <T, U>(lhs: (T, (U) -> Void) -> Void, rhs: U -> Void) -> (T, () -> Void) -> Void  {
-    
-    return { (value: T, completion: () -> Void) in
-        
-        lhs(value) { (newValue: U) in
-            
-            rhs(newValue)
-            
-            completion()
-        }
-    }
-}
-
-// async transformer, async consumer
-
-public func |> <T, U>(lhs: (T, (U) -> Void) -> Void, rhs: (U, () -> Void) -> Void) -> (T, () -> Void) -> Void  {
-    
-    return { (value: T, completion: () -> Void) in
-        
-        lhs(value) { (newValue: U) in
-            
-            rhs(newValue, completion)
-        }
-    }
-}
-
 // async transformer, sync transformer
 
 public func |> <T, U, V>(lhs: (T, (U) -> Void) -> Void, rhs: U -> V) -> (T, (V) -> Void) -> Void  {
@@ -151,18 +92,6 @@ public func |> <T, U, V>(lhs: (T, (U) -> Void) -> Void, rhs: (U, V -> Void) -> V
             
             rhs(result, completion)
         }
-    }
-}
-
-// sync transformer, async consumer
-
-public func |> <T, U>(lhs: (T) -> U, rhs: (U, () -> Void) -> Void) -> (T, () -> Void) -> Void  {
-    
-    return { (value: T, completion: () -> Void) in
-        
-        let newValue = lhs(value)
-        
-        rhs(newValue, completion)
     }
 }
 

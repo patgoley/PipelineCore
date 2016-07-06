@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 
-func consumer<T: Equatable>(expectation: XCTestExpectation, _ expectedValue: T) -> T -> Void {
+func expect<T: Equatable>(expectation: XCTestExpectation, _ expectedValue: T) -> T -> Void {
     
     return { value in
         
@@ -35,9 +35,4 @@ func addFive(value: Int) -> Int {
 func toString<T: CustomStringConvertible>(value: T) -> String {
     
     return value.description
-}
-
-func printString(value: String) {
-    
-    print(value)
 }

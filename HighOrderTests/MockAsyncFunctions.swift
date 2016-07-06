@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 
-func asyncConsumer<T: Equatable>(expectation: XCTestExpectation, _ expectedValue: T) -> (T, () -> Void) -> Void {
+func asyncExpect<T: Equatable>(expectation: XCTestExpectation, _ expectedValue: T) -> (T, () -> Void) -> Void {
     
     return { value, completion in
         
