@@ -19,7 +19,10 @@
 		8E66F8151D2C896E003239B2 /* MockAsyncFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E66F80F1D2C896E003239B2 /* MockAsyncFunctions.swift */; };
 		8E66F8161D2C896E003239B2 /* MockFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E66F8101D2C896E003239B2 /* MockFunctions.swift */; };
 		8E66F8171D2C896E003239B2 /* MockThrowingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E66F8111D2C896E003239B2 /* MockThrowingFunctions.swift */; };
-		8ECF5AA41D2DE41B00397500 /* LICENSE.md in Sources */ = {isa = PBXBuildFile; fileRef = 8ECF5AA31D2DE41B00397500 /* LICENSE.md */; };
+		8E7BE92A1D312033001E904C /* AsyncOptionalOperatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E7BE9291D312033001E904C /* AsyncOptionalOperatorTests.swift */; };
+		8EA9BDE61D308B81007CD91E /* OptionalOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA9BDE51D308B81007CD91E /* OptionalOperators.swift */; };
+		8EA9BDE81D308C70007CD91E /* OptionalOperatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA9BDE71D308C70007CD91E /* OptionalOperatorTests.swift */; };
+		8EA9BDEA1D308CC8007CD91E /* OptionalMockFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8EA9BDE91D308CC8007CD91E /* OptionalMockFunctions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +51,10 @@
 		8E66F80F1D2C896E003239B2 /* MockAsyncFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockAsyncFunctions.swift; sourceTree = "<group>"; };
 		8E66F8101D2C896E003239B2 /* MockFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockFunctions.swift; sourceTree = "<group>"; };
 		8E66F8111D2C896E003239B2 /* MockThrowingFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockThrowingFunctions.swift; sourceTree = "<group>"; };
+		8E7BE9291D312033001E904C /* AsyncOptionalOperatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncOptionalOperatorTests.swift; sourceTree = "<group>"; };
+		8EA9BDE51D308B81007CD91E /* OptionalOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalOperators.swift; sourceTree = "<group>"; };
+		8EA9BDE71D308C70007CD91E /* OptionalOperatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalOperatorTests.swift; sourceTree = "<group>"; };
+		8EA9BDE91D308CC8007CD91E /* OptionalMockFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionalMockFunctions.swift; sourceTree = "<group>"; };
 		8ECF5AA31D2DE41B00397500 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		8EF736B91D2CA91A00A81333 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .travis.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,6 +105,7 @@
 				8E66F8061D2C8948003239B2 /* Operators.swift */,
 				8E66F8041D2C8948003239B2 /* FunctionOperators.swift */,
 				8E66F8021D2C8948003239B2 /* AsyncFunctionOperators.swift */,
+				8EA9BDE51D308B81007CD91E /* OptionalOperators.swift */,
 				8E66F8031D2C8948003239B2 /* ErrorHandling.swift */,
 				8E66F7ED1D2C8917003239B2 /* Info.plist */,
 			);
@@ -113,6 +121,9 @@
 				8E66F80C1D2C896E003239B2 /* AsyncFunctionOperatorTests.swift */,
 				8E66F8111D2C896E003239B2 /* MockThrowingFunctions.swift */,
 				8E66F80D1D2C896E003239B2 /* ErrorHandlingTests.swift */,
+				8EA9BDE91D308CC8007CD91E /* OptionalMockFunctions.swift */,
+				8EA9BDE71D308C70007CD91E /* OptionalOperatorTests.swift */,
+				8E7BE9291D312033001E904C /* AsyncOptionalOperatorTests.swift */,
 				8E66F7F91D2C8917003239B2 /* Info.plist */,
 			);
 			path = PipelineCoreTests;
@@ -192,6 +203,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 8E66F7DE1D2C8917003239B2;
 			productRefGroup = 8E66F7E91D2C8917003239B2 /* Products */;
@@ -226,9 +238,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8ECF5AA41D2DE41B00397500 /* LICENSE.md in Sources */,
 				8E66F8091D2C8948003239B2 /* FunctionOperators.swift in Sources */,
 				8E66F80B1D2C8948003239B2 /* Operators.swift in Sources */,
+				8EA9BDE61D308B81007CD91E /* OptionalOperators.swift in Sources */,
 				8E66F8071D2C8948003239B2 /* AsyncFunctionOperators.swift in Sources */,
 				8E66F8081D2C8948003239B2 /* ErrorHandling.swift in Sources */,
 			);
@@ -244,6 +256,9 @@
 				8E66F8171D2C896E003239B2 /* MockThrowingFunctions.swift in Sources */,
 				8E66F8131D2C896E003239B2 /* ErrorHandlingTests.swift in Sources */,
 				8E66F8141D2C896E003239B2 /* FunctionOperatorTests.swift in Sources */,
+				8E7BE92A1D312033001E904C /* AsyncOptionalOperatorTests.swift in Sources */,
+				8EA9BDE81D308C70007CD91E /* OptionalOperatorTests.swift in Sources */,
+				8EA9BDEA1D308CC8007CD91E /* OptionalMockFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +372,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PipelineCore",
+				);
 				INFOPLIST_FILE = PipelineCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -375,6 +394,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PipelineCore",
+				);
 				INFOPLIST_FILE = PipelineCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
