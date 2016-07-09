@@ -38,3 +38,8 @@ func asyncToString<T: CustomStringConvertible>(value: T, completion: (String) ->
     
      completion(value.description)
 }
+
+func asyncIntToString(value: Int, completion: (String) -> Void) {
+    
+    completion(value.description)
+}

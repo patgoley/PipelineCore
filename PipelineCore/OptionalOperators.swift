@@ -47,8 +47,69 @@ public func ?> <T>(lhs: () -> T?, rhs: (T, () -> Void) -> Void) -> (() -> Void) 
         if let value = lhs() {
             
             rhs(value, completion)
+            
+        } else {
+            
+            completion()
         }
+    }
+}
+
+// sync producer, async transformer
+
+public func ?> <T, U>(lhs: () -> T?, rhs: (T, U -> Void) -> Void) -> ((U?) -> Void) -> Void  {
+    
+    return { (completion: (U?) -> Void) in
         
-        completion()
+        if let value = lhs() {
+            
+            rhs(value, completion)
+            
+        } else {
+            
+            completion(nil)
+        }
+    }
+}
+
+// async producer, sync consumer
+
+public func ?> <T>(lhs: ((T?) -> Void) -> Void, rhs: (T) -> Void) -> (() -> Void) -> Void  {
+    
+    return { (completion: () -> Void) in
+        
+        lhs() { (initialValue: T?) in
+            
+            if let value = initialValue {
+                
+                rhs(value)
+                
+                completion()
+                
+            } else {
+                
+                completion()
+            }
+        }
+    }
+}
+
+// async producer, async consumer
+
+public func ?> <T>(lhs: ((T?) -> Void) -> Void, rhs: (T, () -> Void) -> Void) -> (() -> Void) -> Void  {
+    
+    return { (completion: () -> Void) in
+        
+        lhs() { (initialValue: T?) in
+            
+            if let value = initialValue {
+                
+                rhs(value, completion)
+                
+            } else {
+                
+                completion()
+            }
+        }
     }
 }

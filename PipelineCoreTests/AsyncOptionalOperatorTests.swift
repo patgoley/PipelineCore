@@ -13,7 +13,7 @@ class AsyncOptionalOperatorTests: XCTestCase {
     
     // MARK: Producers
     
-    // producer, async consumer
+    // sync producer, async consumer
     
     func testSomeProducerAsyncConsumer() {
         
@@ -31,9 +31,63 @@ class AsyncOptionalOperatorTests: XCTestCase {
     
     func testNilProducerAsyncConsumer() {
         
+        let expt = expectationWithDescription("nil")
+        
+        let expectFive = nilThunk ?> asyncFailTest
+        
+        expectFive() {
+            
+            expt.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(0.1, handler: nil)
+    }
+    
+    // sync producer, async transformer
+    
+    func testSomeProducerAsyncTransformer() {
+        
         let expt = expectationWithDescription("consumer")
         
-        let expectFive = nilThunk ?> asyncExpect(expt, 5)
+        let expectFiveString = optionalThunkify(5) ?> asyncIntToString
+        
+        expectFiveString() { (str: String?) in
+            
+            print("expecting 5 \(str)")
+            
+            XCTAssertNotNil(str!)
+            
+            XCTAssert(str == "5")
+            
+            expt.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(0.1, handler: nil)
+    }
+    
+    func testNilProducerAsyncTransformer() {
+        
+        let expt = expectationWithDescription("nil")
+        
+        let expectFiveString = nilThunk ?> asyncIntToString
+        
+        expectFiveString() { (str: String?) in
+            
+            XCTAssertNil(str)
+            
+            expt.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(0.1, handler: nil)
+    }
+    
+    // async producer, sync consumer
+    
+    func testSomeAsyncProducerConsumer() {
+        
+        let expt = expectationWithDescription("consumer")
+        
+        let expectFive = asyncOptionalThunkify(5) ?> expect(expt, 5)
         
         expectFive() {
             
@@ -43,52 +97,50 @@ class AsyncOptionalOperatorTests: XCTestCase {
         waitForExpectationsWithTimeout(0.1, handler: nil)
     }
     
-//    func testProducerAsyncTransformer() {
-//        
-//        let expt = expectationWithDescription("consumer")
-//        
-//        let expectFive = thunkify(5) |> asyncToString |> expect(expt, "5")
-//        
-//        expectFive() {
-//            
-//            
-//        }
-//        
-//        waitForExpectationsWithTimeout(0.1, handler: nil)
-//    }
-//    
-//    // async producer, sync consumer
-//    
-//    func testAsyncProducerConsumer() {
-//        
-//        let expt = expectationWithDescription("consumer")
-//        
-//        let expectFive = asyncThunkify(5) |> expect(expt, 5)
-//        
-//        expectFive() {
-//            
-//            
-//        }
-//        
-//        waitForExpectationsWithTimeout(0.1, handler: nil)
-//    }
-//    
-//    // async producer, async consumer
-//    
-//    func testAsyncProducerAsyncConsumer() {
-//        
-//        let expt = expectationWithDescription("consumer")
-//        
-//        let expectFive = asyncThunkify(5) |> asyncExpect(expt, 5)
-//        
-//        expectFive() {
-//            
-//            
-//        }
-//        
-//        waitForExpectationsWithTimeout(0.1, handler: nil)
-//    }
-//    
+    func testNilAsyncProducerConsumer() {
+        
+        let expt = expectationWithDescription("consumer")
+        
+        let expectFive = asyncNilThunk ?> failTest
+        
+        expectFive() {
+            
+            expt.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(0.1, handler: nil)
+    }
+
+    // async producer, async consumer
+    
+    func testSomeAsyncProducerAsyncConsumer() {
+        
+        let expt = expectationWithDescription("consumer")
+        
+        let expectFive = asyncOptionalThunkify(5) ?> asyncExpect(expt, 5)
+        
+        expectFive() {
+            
+            
+        }
+        
+        waitForExpectationsWithTimeout(0.1, handler: nil)
+    }
+    
+    func testNilAsyncProducerAsyncConsumer() {
+        
+        let expt = expectationWithDescription("consumer")
+        
+        let expectFive = asyncNilThunk ?> asyncFailTest
+        
+        expectFive() {
+            
+            expt.fulfill()
+        }
+        
+        waitForExpectationsWithTimeout(0.1, handler: nil)
+    }
+//
 //    // async producer, transformer
 //    
 //    func testAsyncProducerTransformer() {

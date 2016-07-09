@@ -9,6 +9,14 @@
 import Foundation
 import XCTest
 
+func expect(expt: XCTestExpectation) -> () -> Void {
+    
+    return {
+        
+        expt.fulfill()
+    }
+}
+
 func failTest(int: Int) {
     
     XCTFail()
@@ -22,7 +30,7 @@ func optionalThunkify<T>(value: T) -> () -> T? {
     }
 }
 
-func nilThunk<T>() -> T? {
+func nilThunk() -> Int? {
     
     return nil
 }
@@ -39,33 +47,30 @@ func transformToNil<T>(value: T) -> T? {
 
 // Async
 
-func asyncFailTest() -> (Int) -> Void {
+func asyncFailTest(value: Int, completion: () -> Void) -> Void {
     
-    return { value in XCTFail() }
+    XCTFail()
 }
 
-func asyncOptionalThunkify<T>(value: T) -> ((T) -> Void) -> Void {
-    
-    return { completion
-        
-        return value
-    }
-}
-
-func nilThunk<T>() -> ((T?) -> Void) -> Void {
+func asyncOptionalThunkify<T>(value: T) -> ((T?) -> Void) -> Void {
     
     return { completion in
         
-        completion(nil)
+         completion(value)
     }
 }
 
-func stringToInt(string: String) -> Int? {
+func asyncNilThunk(completion: (Int?) -> Void) {
+    
+    completion(nil)
+}
+
+func asyncStringToInt(string: String) -> Int? {
     
     return Int(string)
 }
 
-func transformToNil<T>(value: T) -> T? {
+func asyncTransformToNil<T>(value: T) -> T? {
     
     return nil
 }
