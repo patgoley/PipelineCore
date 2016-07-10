@@ -38,7 +38,7 @@ public func |> <T, U>(lhs: () -> T, rhs: (T, (U) -> Void) -> Void) -> ((U) -> Vo
 
 // async producer, sync transformer
 
-public func |> <T, U>(lhs: ((T) -> Void) -> Void, rhs: T -> U) -> ((U) -> Void) -> Void  {
+public func |> <T, U>(lhs: ((T) -> Void) -> Void, rhs: (T) -> U) -> ((U) -> Void) -> Void  {
     
     return { (completion: (U) -> Void) in
         
@@ -69,7 +69,7 @@ public func |> <T, U>(lhs: ((T) -> Void) -> Void, rhs: (T, (U) -> Void) -> Void)
 
 // async transformer, sync transformer
 
-public func |> <T, U, V>(lhs: (T, (U) -> Void) -> Void, rhs: U -> V) -> (T, (V) -> Void) -> Void  {
+public func |> <T, U, V>(lhs: (T, (U) -> Void) -> Void, rhs: (U) -> V) -> (T, (V) -> Void) -> Void  {
     
     return { (value: T, completion: (V) -> Void) in
         
@@ -84,7 +84,7 @@ public func |> <T, U, V>(lhs: (T, (U) -> Void) -> Void, rhs: U -> V) -> (T, (V) 
 
 // async transformer, async transformer
 
-public func |> <T, U, V>(lhs: (T, (U) -> Void) -> Void, rhs: (U, V -> Void) -> Void) -> (T, (V) -> Void) -> Void  {
+public func |> <T, U, V>(lhs: (T, (U) -> Void) -> Void, rhs: (U, (V) -> Void) -> Void) -> (T, (V) -> Void) -> Void  {
     
     return { (value: T, completion: (V) -> Void) in
         
@@ -97,7 +97,7 @@ public func |> <T, U, V>(lhs: (T, (U) -> Void) -> Void, rhs: (U, V -> Void) -> V
 
 // sync transformer, async transformer
 
-public func |> <T, U, V>(lhs: (T) -> U, rhs: (U, V -> Void) -> Void) -> (T, (V) -> Void) -> Void  {
+public func |> <T, U, V>(lhs: (T) -> U, rhs: (U, (V) -> Void) -> Void) -> (T, (V) -> Void) -> Void  {
     
     return { (value: T, completion: (V) -> Void) in
         
@@ -127,7 +127,7 @@ public func |> <U, V>(lhs: (U, () -> Void) -> Void, rhs: () -> V) -> (U, (V) -> 
 
 // async consumer, async producer
 
-public func |> <T, U>(lhs: (T, () -> Void) -> Void, rhs: (U -> Void) -> Void) -> (T, (U) -> Void) -> Void  {
+public func |> <T, U>(lhs: (T, () -> Void) -> Void, rhs: ((U) -> Void) -> Void) -> (T, (U) -> Void) -> Void  {
     
     return { (value: T, completion: (U) -> Void) in
         
@@ -140,7 +140,7 @@ public func |> <T, U>(lhs: (T, () -> Void) -> Void, rhs: (U -> Void) -> Void) ->
 
 // sync consumer, async producer
 
-public func |> <T, U>(lhs: (T) -> Void, rhs: (U -> Void) -> Void) -> (T, (U) -> Void) -> Void  {
+public func |> <T, U>(lhs: (T) -> Void, rhs: ((U) -> Void) -> Void) -> (T, (U) -> Void) -> Void  {
     
     return { (value: T, completion: (U) -> Void) in
         

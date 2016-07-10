@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 
-func expect<T: Equatable>(expectation: XCTestExpectation, _ expectedValue: T) -> T -> Void {
+func expect<T: Equatable>(_ expectation: XCTestExpectation, _ expectedValue: T) -> (T) -> Void {
     
     return { value in
         
@@ -19,7 +19,7 @@ func expect<T: Equatable>(expectation: XCTestExpectation, _ expectedValue: T) ->
     }
 }
 
-func thunkify<T>(value: T) -> () -> T {
+func thunkify<T>(_ value: T) -> () -> T {
 
     return {
         
@@ -27,12 +27,12 @@ func thunkify<T>(value: T) -> () -> T {
     }
 }
 
-func addFive(value: Int) -> Int {
+func addFive(_ value: Int) -> Int {
     
     return value + 5
 }
 
-func toString<T: CustomStringConvertible>(value: T) -> String {
+func toString<T: CustomStringConvertible>(_ value: T) -> String {
     
     return value.description
 }

@@ -9,7 +9,7 @@
 import Foundation
 import XCTest
 
-func asyncExpect<T: Equatable>(expectation: XCTestExpectation, _ expectedValue: T) -> (T, () -> Void) -> Void {
+func asyncExpect<T: Equatable>(_ expectation: XCTestExpectation, _ expectedValue: T) -> (T, () -> Void) -> Void {
     
     return { value, completion in
         
@@ -21,7 +21,7 @@ func asyncExpect<T: Equatable>(expectation: XCTestExpectation, _ expectedValue: 
     }
 }
 
-func asyncThunkify<T>(value: T) -> ((T) -> Void) -> Void {
+func asyncThunkify<T>(_ value: T) -> ((T) -> Void) -> Void {
     
     return { completion in
         
@@ -29,12 +29,12 @@ func asyncThunkify<T>(value: T) -> ((T) -> Void) -> Void {
     }
 }
 
-func asyncAddFive(value: Int, _ completion: (Int) -> Void) {
+func asyncAddFive(_ value: Int, _ completion: (Int) -> Void) {
     
     completion(value + 5)
 }
 
-func asyncToString<T: CustomStringConvertible>(value: T, completion: (String) -> Void) {
+func asyncToString<T: CustomStringConvertible>(_ value: T, completion: (String) -> Void) {
     
      completion(value.description)
 }

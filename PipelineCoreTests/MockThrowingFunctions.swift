@@ -10,31 +10,31 @@ import Foundation
 import PipelineCore
 import XCTest
 
-struct MockError: ErrorType { }
+struct MockError: ErrorProtocol { }
 
-func expectSuccess<T: Equatable>(expectation: XCTestExpectation, _ expectedValue: T) -> Result<T> -> Void {
+func expectSuccess<T: Equatable>(_ expectation: XCTestExpectation, _ expectedValue: T) -> (Result<T>) -> Void {
     
     return { value in
         
         switch value {
-        case .Error(_): XCTFail()
+        case .error(_): XCTFail()
         default: expectation.fulfill()
         }
     }
 }
 
-func expectError<T: Equatable>(expectation: XCTestExpectation) -> Result<T> -> Void {
+func expectError<T: Equatable>(_ expectation: XCTestExpectation) -> (Result<T>) -> Void {
     
     return { value in
         
         switch value {
-        case .Success(_): XCTFail()
+        case .success(_): XCTFail()
         default: expectation.fulfill()
         }
     }
 }
 
-func throwingConsumer<T: Equatable>(expectation: XCTestExpectation) -> T throws -> Void {
+func throwingConsumer<T: Equatable>(_ expectation: XCTestExpectation) -> (T) throws -> Void {
     
     return { value in
         
@@ -44,7 +44,7 @@ func throwingConsumer<T: Equatable>(expectation: XCTestExpectation) -> T throws 
     }
 }
 
-func safeConsumer<T: Equatable>(expectation: XCTestExpectation, _ expectedValue: T) -> T throws -> Void {
+func safeConsumer<T: Equatable>(_ expectation: XCTestExpectation, _ expectedValue: T) -> (T) throws -> Void {
     
     return { value in
         
@@ -54,7 +54,7 @@ func safeConsumer<T: Equatable>(expectation: XCTestExpectation, _ expectedValue:
     }
 }
 
-func throwingAsyncConsumer<T: Equatable>(expectation: XCTestExpectation) -> (T, () -> Void) throws -> Void {
+func throwingAsyncConsumer<T: Equatable>(_ expectation: XCTestExpectation) -> (T, () -> Void) throws -> Void {
     
     return { value, compeltion in
         
@@ -64,7 +64,7 @@ func throwingAsyncConsumer<T: Equatable>(expectation: XCTestExpectation) -> (T, 
     }
 }
 
-func safeAsyncConsumer<T: Equatable>(expectation: XCTestExpectation, _ expectedValue: T) -> (T, () -> Void) throws -> Void {
+func safeAsyncConsumer<T: Equatable>(_ expectation: XCTestExpectation, _ expectedValue: T) -> (T, () -> Void) throws -> Void {
     
     return { value, completion in
         
@@ -76,7 +76,7 @@ func safeAsyncConsumer<T: Equatable>(expectation: XCTestExpectation, _ expectedV
     }
 }
 
-func throwingThunkify<T>(value: T) -> () throws -> T {
+func throwingThunkify<T>(_ value: T) -> () throws -> T {
     
     return {
         
@@ -84,7 +84,7 @@ func throwingThunkify<T>(value: T) -> () throws -> T {
     }
 }
 
-func safeThunkify<T>(value: T) -> () throws -> T {
+func safeThunkify<T>(_ value: T) -> () throws -> T {
     
     return {
         
@@ -92,7 +92,7 @@ func safeThunkify<T>(value: T) -> () throws -> T {
     }
 }
 
-func throwingAsyncThunkify<T>(value: T) -> ((T -> Void)) throws -> Void {
+func throwingAsyncThunkify<T>(_ value: T) -> (((T) -> Void)) throws -> Void {
     
     return { completion in
         
@@ -100,7 +100,7 @@ func throwingAsyncThunkify<T>(value: T) -> ((T -> Void)) throws -> Void {
     }
 }
 
-func safeAsyncThunkify<T>(value: T) -> ((T) -> Void) throws -> Void {
+func safeAsyncThunkify<T>(_ value: T) -> ((T) -> Void) throws -> Void {
     
     return { completion in
         
@@ -108,24 +108,24 @@ func safeAsyncThunkify<T>(value: T) -> ((T) -> Void) throws -> Void {
     }
 }
 
-func throwingToString<T: CustomStringConvertible>(value: T) throws -> String {
+func throwingToString<T: CustomStringConvertible>(_ value: T) throws -> String {
     
     throw MockError()
 }
 
 
-func safeToString<T: CustomStringConvertible>(value: T) throws -> String {
+func safeToString<T: CustomStringConvertible>(_ value: T) throws -> String {
     
     return value.description
 }
 
-func asyncThrowingToString<T: CustomStringConvertible>(value: T, completion: (String) -> Void) throws {
+func asyncThrowingToString<T: CustomStringConvertible>(_ value: T, completion: (String) -> Void) throws {
     
     throw MockError()
 }
 
 
-func asyncSafeToString<T: CustomStringConvertible>(value: T, completion: (String) -> Void) throws {
+func asyncSafeToString<T: CustomStringConvertible>(_ value: T, completion: (String) -> Void) throws {
     
     completion(value.description)
     

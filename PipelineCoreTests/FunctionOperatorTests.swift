@@ -17,13 +17,13 @@ class FunctionOperatorTests: XCTestCase {
     
     func testProducerConsumer() {
         
-        let expt = expectationWithDescription("consumer")
+        let expt = expectation(withDescription: "consumer")
         
         let expectFive = thunkify(5) |> expect(expt, 5)
         
         expectFive()
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
 
     // producer, transformer
@@ -42,26 +42,26 @@ class FunctionOperatorTests: XCTestCase {
     
     func testTransformerConsumer() {
         
-        let expt = expectationWithDescription("consumer")
+        let expt = expectation(withDescription: "consumer")
         
         let expectFiveMore = addFive |> expect(expt, 5)
         
         expectFiveMore(0)
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
 
     // transformer, transformer
     
     func testTransformerTransformer() {
         
-        let expt = expectationWithDescription("consumer")
+        let expt = expectation(withDescription: "consumer")
         
         let expectFiveMoreString = addFive |> toString |> expect(expt, "5")
         
         expectFiveMoreString(0)
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
 
     
@@ -71,9 +71,9 @@ class FunctionOperatorTests: XCTestCase {
     
     func testConsumerProducer() {
         
-        let firstExpt = expectationWithDescription("first consumer")
+        let firstExpt = expectation(withDescription: "first consumer")
         
-        let secondExpt = expectationWithDescription("second consumer")
+        let secondExpt = expectation(withDescription: "second consumer")
         
         let consumeThenProduce = addFive
             |> expect(firstExpt, 5)
@@ -82,6 +82,6 @@ class FunctionOperatorTests: XCTestCase {
         
         consumeThenProduce(0)
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
 }

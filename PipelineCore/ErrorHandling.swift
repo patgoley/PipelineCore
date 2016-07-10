@@ -18,7 +18,7 @@ public enum Result<T> {
     
     public typealias ValueType = T
     
-    case Success(T), Error(ErrorType)
+    case success(T), error(ErrorProtocol)
 }
 
 /*
@@ -29,7 +29,7 @@ public enum Result<T> {
 
 // sync producer or transformer
 
-public func errorMap<T, U>(function: (T) throws -> U) -> (T) -> Result<U> {
+public func errorMap<T, U>(_ function: (T) throws -> U) -> (T) -> Result<U> {
     
     return { (value: T) -> Result<U> in
         
@@ -37,20 +37,20 @@ public func errorMap<T, U>(function: (T) throws -> U) -> (T) -> Result<U> {
             
             let newValue = try function(value)
             
-            return .Success(newValue)
+            return .success(newValue)
             
         } catch let error {
             
-            return .Error(error)
+            return .error(error)
         }
     }
 }
 
 // sync consumer
 
-public func errorMap<T>(function: (T) throws -> Void) -> (T) -> ErrorType? {
+public func errorMap<T>(_ function: (T) throws -> Void) -> (T) -> ErrorProtocol? {
     
-    return { (value: T) -> ErrorType? in
+    return { (value: T) -> ErrorProtocol? in
         
         do {
             
@@ -72,7 +72,7 @@ public func errorMap<T>(function: (T) throws -> Void) -> (T) -> ErrorType? {
 
 // async producer
 
-public func errorMap<U>(function: ((U) -> Void) throws -> Void) -> ((Result<U>) -> Void) -> Void {
+public func errorMap<U>(_ function: ((U) -> Void) throws -> Void) -> ((Result<U>) -> Void) -> Void {
     
     return { (completion: (Result<U>) -> Void) -> Void in
         
@@ -80,19 +80,19 @@ public func errorMap<U>(function: ((U) -> Void) throws -> Void) -> ((Result<U>) 
             
             try function() { (value: U) in
                 
-                completion(.Success(value))
+                completion(.success(value))
             }
             
         } catch let error {
             
-            completion(.Error(error))
+            completion(.error(error))
         }
     }
 }
 
 // async transformer
 
-public func errorMap<T, U>(function: (T, (U) -> Void) throws -> Void) -> (T, (Result<U>) -> Void) -> Void {
+public func errorMap<T, U>(_ function: (T, (U) -> Void) throws -> Void) -> (T, (Result<U>) -> Void) -> Void {
     
     return { (value: T, completion: (Result<U>) -> Void) -> Void in
         
@@ -100,21 +100,21 @@ public func errorMap<T, U>(function: (T, (U) -> Void) throws -> Void) -> (T, (Re
             
             try function(value) { (newValue: U) in
                 
-                completion(.Success(newValue))
+                completion(.success(newValue))
             }
             
         } catch let error {
             
-            completion(.Error(error))
+            completion(.error(error))
         }
     }
 }
 
 // async consumer
 
-public func errorMap<U>(function: (U, () -> Void) throws -> Void) -> (U, (ErrorType?) -> Void) -> Void {
+public func errorMap<U>(_ function: (U, () -> Void) throws -> Void) -> (U, (ErrorProtocol?) -> Void) -> Void {
     
-    return { (value: U, completion: (ErrorType?) -> Void) -> Void in
+    return { (value: U, completion: (ErrorProtocol?) -> Void) -> Void in
         
         do {
             

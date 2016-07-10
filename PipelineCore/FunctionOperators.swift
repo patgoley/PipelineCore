@@ -27,7 +27,7 @@ import Foundation
  a return value.
 */
 
-public func |> <T, U, V>(lhs: T -> U, rhs: U -> V) -> T -> V  {
+public func |> <T, U, V>(lhs: (T) -> U, rhs: (U) -> V) -> (T) -> V  {
     
     return { value in
         

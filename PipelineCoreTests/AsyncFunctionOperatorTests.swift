@@ -17,7 +17,7 @@ class AsyncFunctionOperatorTests: XCTestCase {
     
     func testProducerAsyncConsumer() {
         
-        let expt = expectationWithDescription("consumer")
+        let expt = expectation(withDescription: "consumer")
         
         let expectFive = thunkify(5) |> asyncExpect(expt, 5)
         
@@ -26,12 +26,12 @@ class AsyncFunctionOperatorTests: XCTestCase {
             
         }
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
     
     func testProducerAsyncTransformer() {
         
-        let expt = expectationWithDescription("consumer")
+        let expt = expectation(withDescription: "consumer")
         
         let expectFive = thunkify(5) |> asyncToString |> expect(expt, "5")
         
@@ -40,14 +40,14 @@ class AsyncFunctionOperatorTests: XCTestCase {
             
         }
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
     
     // async producer, sync consumer
     
     func testAsyncProducerConsumer() {
         
-        let expt = expectationWithDescription("consumer")
+        let expt = expectation(withDescription: "consumer")
         
         let expectFive = asyncThunkify(5) |> expect(expt, 5)
         
@@ -56,14 +56,14 @@ class AsyncFunctionOperatorTests: XCTestCase {
             
         }
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
     
     // async producer, async consumer
     
     func testAsyncProducerAsyncConsumer() {
         
-        let expt = expectationWithDescription("consumer")
+        let expt = expectation(withDescription: "consumer")
         
         let expectFive = asyncThunkify(5) |> asyncExpect(expt, 5)
         
@@ -72,14 +72,14 @@ class AsyncFunctionOperatorTests: XCTestCase {
             
         }
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
     
     // async producer, transformer
     
     func testAsyncProducerTransformer() {
         
-        let expt = expectationWithDescription("consumer")
+        let expt = expectation(withDescription: "consumer")
         
         let fiveToString = asyncThunkify(5) |> toString
         
@@ -92,14 +92,14 @@ class AsyncFunctionOperatorTests: XCTestCase {
             expt.fulfill()
         }
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
     
     // async producer, async transformer
     
     func testAsyncProducerAsyncTransformer() {
         
-        let expt = expectationWithDescription("consumer")
+        let expt = expectation(withDescription: "consumer")
         
         let fiveToString = asyncThunkify(5) |> asyncToString
         
@@ -112,7 +112,7 @@ class AsyncFunctionOperatorTests: XCTestCase {
             expt.fulfill()
         }
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
     
 
@@ -122,7 +122,7 @@ class AsyncFunctionOperatorTests: XCTestCase {
     
     func testAsyncTransformerSyncConsumer() {
         
-        let expt = expectationWithDescription("consumer")
+        let expt = expectation(withDescription: "consumer")
         
         let expectFiveMore = asyncAddFive |> expect(expt, 5)
         
@@ -131,14 +131,14 @@ class AsyncFunctionOperatorTests: XCTestCase {
             
         }
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
     
     // async transformer, async consumer
     
     func testAsyncTransformerAsyncConsumer() {
         
-        let expt = expectationWithDescription("consumer")
+        let expt = expectation(withDescription: "consumer")
         
         let expectFiveMore = asyncAddFive |> asyncExpect(expt, 5)
         
@@ -147,14 +147,14 @@ class AsyncFunctionOperatorTests: XCTestCase {
         
         }
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
     
     // async transformer, sync transformer
     
     func testAsyncTransformerTransformer() {
         
-        let expt = expectationWithDescription("consumer")
+        let expt = expectation(withDescription: "consumer")
         
         let expectFiveMoreString = asyncAddFive |> toString
         
@@ -165,14 +165,14 @@ class AsyncFunctionOperatorTests: XCTestCase {
             expt.fulfill()
         }
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
     
     // async transformer, async transformer
     
     func testAsyncTransformerAsyncTransformer() {
         
-        let expt = expectationWithDescription("consumer")
+        let expt = expectation(withDescription: "consumer")
         
         let expectFiveMoreString: (Int, (String) -> Void) -> Void = asyncAddFive |> asyncToString
         
@@ -183,14 +183,14 @@ class AsyncFunctionOperatorTests: XCTestCase {
             expt.fulfill()
         }
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
     
     // sync transformer, async consumer
     
     func testSyncTransformerAsyncConsumer() {
         
-        let expt = expectationWithDescription("consumer")
+        let expt = expectation(withDescription: "consumer")
         
         let expectFiveMoreString = addFive |> asyncExpect(expt, 5)
         
@@ -199,14 +199,14 @@ class AsyncFunctionOperatorTests: XCTestCase {
             
         }
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
     
     // sync transformer, async transformer
     
     func testSyncTransformerAsyncTransformer() {
         
-        let expt = expectationWithDescription("consumer")
+        let expt = expectation(withDescription: "consumer")
         
         let expectFiveMoreString: (Int, (String) -> Void) -> Void = addFive |> asyncToString
         
@@ -217,7 +217,7 @@ class AsyncFunctionOperatorTests: XCTestCase {
             expt.fulfill()
         }
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
     
 
@@ -227,9 +227,9 @@ class AsyncFunctionOperatorTests: XCTestCase {
     
     func testAsyncConsumerProducer() {
         
-        let firstExpt = expectationWithDescription("first consumer")
+        let firstExpt = expectation(withDescription: "first consumer")
         
-        let secondExpt = expectationWithDescription("second consumer")
+        let secondExpt = expectation(withDescription: "second consumer")
         
         let consumeThenProduce = addFive
             |> asyncExpect(firstExpt, 5)
@@ -241,16 +241,16 @@ class AsyncFunctionOperatorTests: XCTestCase {
             
         }
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
     
     // async consumer, async producer
     
     func testAsyncConsumerAsyncProducer() {
         
-        let firstExpt = expectationWithDescription("first consumer")
+        let firstExpt = expectation(withDescription: "first consumer")
         
-        let secondExpt = expectationWithDescription("second consumer")
+        let secondExpt = expectation(withDescription: "second consumer")
         
         let consumeThenProduce = addFive
             |> asyncExpect(firstExpt, 5)
@@ -262,16 +262,16 @@ class AsyncFunctionOperatorTests: XCTestCase {
             
         }
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
     
     // consumer, async producer
     
     func testConsumerAsyncProducer() {
         
-        let firstExpt = expectationWithDescription("first consumer")
+        let firstExpt = expectation(withDescription: "first consumer")
         
-        let secondExpt = expectationWithDescription("second consumer")
+        let secondExpt = expectation(withDescription: "second consumer")
         
         let consumeThenProduce = addFive
             |> expect(firstExpt, 5)
@@ -283,6 +283,6 @@ class AsyncFunctionOperatorTests: XCTestCase {
             
         }
         
-        waitForExpectationsWithTimeout(0.1, handler: nil)
+        waitForExpectations(withTimeout: 0.1, handler: nil)
     }
 }
